@@ -1,0 +1,57 @@
+/* 如果别的页面也需要公共样式 直接在less里面引入公共样式 */
+
+@import 'base.less';
+html {
+    // 按照设计稿1半的屏幕 375写代码 
+    // 假设375 1rem == 100px 根元素在 375的时候 就是 100px
+    // 100px / 375px * 100 == vw
+    font-size: 26.6667vw;
+}
+
+// 按照之前2倍图的方式设计稿是我们真是写页面屏幕的2倍
+#header {
+    display: flex;
+    background-color: #ccc;
+    .icon-back {
+        width: 0.4rem;
+        height: .45rem;
+        background-image: url(../images/sprites.png);
+        background-size: 2rem 2rem;
+        background-position: -0.2rem 0;
+        padding: .125rem .1rem;
+        background-origin: content-box;
+        background-clip: content-box;
+    }
+    form {
+        flex: 1;
+        position: relative;
+        padding: .05rem 0;
+        .icon-search{
+            width: .2rem;
+            height: .2rem;
+            position: absolute;
+            left: .1rem;
+            top: 0.125rem;
+            background-image: url(../images/sprites.png);
+            background-size: 2rem 2rem;
+            background-position: -0.6rem -1.1rem;
+        }
+        input{
+            width: 2.95rem;
+            height: .35rem;
+            border-radius: .17rem;
+            padding-left: .3rem;
+            font-size: .14rem;
+        }
+    }
+    .icon-menu {
+        width: 0.4rem;
+        height: .45rem;
+        background-image: url(../images/sprites.png);
+        background-size: 2rem 2rem;
+        background-position: -0.6rem 0;
+        padding: .125rem .1rem;
+        background-origin: content-box;
+        background-clip: content-box;
+    }
+}

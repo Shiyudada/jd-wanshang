@@ -1,0 +1,52 @@
+.header {
+  width: 100%;
+  max-width: 640px;
+  min-width: 320px;
+  margin: 0 auto;
+  height: 40px;
+  background-color: #ccc;
+  position: relative;
+}
+
+.header > .back {
+  width: 40px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  padding: 11px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-image: url("../images/sprites.png");
+  background-size: 200px 200px;
+  background-position: -22px 0px;
+  background-origin: content-box;
+  background-clip: content-box;
+  left: 0;
+}
+
+.header > .back:hover {
+  color: red;
+}
+
+.header > .menu {
+  width: 40px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  padding: 11px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-image: url("../images/sprites.png");
+  background-size: 200px 200px;
+  background-position: -60px 0px;
+  background-origin: content-box;
+  background-clip: content-box;
+  right: 0;
+}
+
+.header > form {
+  width: 100%;
+  height: 100%;
+  padding: 0 50px;
+}
+/*# sourceMappingURL=temp.css.map */

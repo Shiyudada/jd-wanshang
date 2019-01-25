@@ -1,0 +1,17 @@
+// - 定义变量：$变量名：值;
+$baseColor:#ccc;
+
+// 定义混入--函数
+@mixin iconSet($x:0px,$y:0px) {
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    padding: 11px;
+    box-sizing: border-box;
+    background-image: url('../images/sprites.png');
+    background-size: 200px 200px;
+    background-position: $x $y;
+    background-origin: content-box;
+    background-clip: content-box;
+}

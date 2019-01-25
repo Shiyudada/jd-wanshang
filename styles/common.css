@@ -1,0 +1,27 @@
+@charset "UTF-8";
+#footer {
+  position: fixed;
+  bottom: 0;
+  /* 设置宽度不然没有宽度 */
+  width: 100%;
+  background-color: #d51433;
+}
+
+#footer ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#footer ul li {
+  width: 20%;
+}
+
+#footer ul li a {
+  display: block;
+}
+
+#footer ul li a img {
+  width: 0.65rem;
+}
+/*# sourceMappingURL=common.css.map */

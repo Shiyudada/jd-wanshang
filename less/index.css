@@ -1,0 +1,295 @@
+/* 在index.less文件夹里面引入公共的base.less文件 */
+/* 定义网站全局变量 */
+/* 京东红的主题色 */
+html {
+  /* 设置根元素大小为 26.6667vw 根元素在 375屏幕 1rem == 100px  只要把页面所有px单位缩小100倍 就是rem值 */
+  font-size: 26.6667vw;
+}
+/* 给所有标签都去除默认样式 */
+* {
+  margin: 0;
+  padding: 0;
+  /* 移动端不允许网页出现横向滚动条 */
+  /* 而且页面都是全屏盛满 宽度通常100% */
+  /* 让盒模型的计算方式 固定为 设置 width 和 height 
+    如果 padding border 会把content内容挤小 */
+  /* 因为所有都要设置这个属性 放到*号里面 */
+  box-sizing: border-box;
+  /* 移动端一些能按住的元素会有一个高亮背景色 */
+  -webkit-tap-highlight-color: transparent;
+}
+/* 给body设置默认字体样式 */
+body {
+  font-family: '微软雅黑';
+  /* 移动端默认字体一般是14px */
+  font-size: 0.14rem;
+}
+li {
+  list-style: none;
+}
+a {
+  color: #666;
+  text-decoration: none;
+}
+img {
+  /* 解决图片的3px间隙问题 */
+  vertical-align: middle;
+}
+input {
+  border: 0;
+  /* 去掉内边框 */
+  outline: 0;
+}
+/* 定义一些重复边框类名 */
+.bt {
+  border-top: 1px solid #ccc;
+}
+.bb {
+  border-bottom: 1px solid #ccc;
+}
+.bl {
+  border-left: 1px solid #ccc;
+}
+.br {
+  border-right: 1px solid #ccc;
+}
+/* 自定义一个icon函数封装重复使用精灵图的代码  */
+.icon {
+  /* 引入logo的精灵图图片 */
+  background-image: url(../images/sprites.png);
+  background-size: 2rem 2rem;
+  /* 默认背景图不会跟随padding去改变位置  设置了背景图定位器起点和裁切可以让背景图参照padding来动 */
+  /* 设置背景图的定位参照点 */
+  background-origin: content-box;
+  background-clip: content-box;
+}
+#header {
+  position: fixed;
+  /* 如果设置了固定定位 脱标了之后宽度都没有的会按照内容撑开 如果想要100%需要手动设置 */
+  width: 100%;
+  /* 父元素设置flex布局 */
+  display: flex;
+  /* > 表示子代 直接子元素  这种注释编译后会保留 */
+}
+#header > .icon-logo {
+  width: 0.8rem;
+  height: 0.45rem;
+  /* 调用自定义函数 icon */
+  /* 引入logo的精灵图图片 */
+  background-image: url(../images/sprites.png);
+  background-size: 2rem 2rem;
+  /* 默认背景图不会跟随padding去改变位置  设置了背景图定位器起点和裁切可以让背景图参照padding来动 */
+  /* 设置背景图的定位参照点 */
+  background-origin: content-box;
+  background-clip: content-box;
+  background-position: 0px -1.1rem;
+  /* 盒子虽然很大80 但是真实显示图片只有 60*25 图片是居中在页面里面显示 设置一个padding把图片挤到中间来 */
+  padding: 0.1rem;
+}
+#header > form {
+  flex: 1;
+  padding-top: 0.05rem;
+  position: relative;
+}
+#header > form .icon-search {
+  /* 调用自定义函数icon */
+  /* 引入logo的精灵图图片 */
+  background-image: url(../images/sprites.png);
+  background-size: 2rem 2rem;
+  /* 默认背景图不会跟随padding去改变位置  设置了背景图定位器起点和裁切可以让背景图参照padding来动 */
+  /* 设置背景图的定位参照点 */
+  background-origin: content-box;
+  background-clip: content-box;
+  background-position: -0.6rem -1.1rem;
+  width: 0.2rem;
+  height: 0.2rem;
+  position: absolute;
+  left: 0.1rem;
+  top: 0.14rem;
+}
+#header > form input {
+  width: 100%;
+  height: 0.35rem;
+  border-radius: 0.17rem;
+  padding-left: 0.3rem;
+  font-size: 0.14rem;
+}
+#header > .login {
+  width: 0.5rem;
+  text-align: center;
+  line-height: 0.45rem;
+  color: #fff;
+}
+#slide img {
+  width: 100%;
+}
+/* 导航条样式 */
+#nav {
+  /* 父元素和子元素的间距使用padding  只给nav设置上下padding*/
+  padding: 0.1rem 0;
+}
+#nav ul {
+  display: flex;
+  /* 让flex布局支持换行 */
+  flex-wrap: wrap;
+}
+#nav ul li {
+  width: 25%;
+}
+#nav ul li a {
+  text-align: center;
+  /* 如果想给a设置文本居中属性 让文本和 图片居中一定要转块 */
+  display: block;
+}
+#nav ul li a img {
+  width: 0.4rem;
+  height: 0.4rem;
+}
+#nav ul li a p {
+  /* 兄弟之间使用margin */
+  margin: 0.05rem 0;
+}
+/* 主体商品区域 */
+#main {
+  /* 设置内边距 父子之间的间距 */
+  padding: 0.1rem;
+  /* 为了把main里面的商品内容往上挤 60px 为了不和底部重叠在一起 */
+  padding-bottom: 0.6rem;
+  background-color: #eee;
+  /* 秒杀商品 */
+  /* 京东超市 */
+}
+#main .seckill {
+  background-color: #fff;
+  box-shadow: 0px 0px 0.02rem 0.01rem hotpink;
+}
+#main .seckill .title {
+  display: flex;
+  /* 设置伸缩布局2端对齐 */
+  justify-content: space-between;
+  line-height: 0.3rem;
+}
+#main .seckill .title .left {
+  display: flex;
+}
+#main .seckill .title .left .seckill-icon {
+  width: 0.20rem;
+  height: 0.25rem;
+  margin-left: 0.05rem;
+}
+#main .seckill .title .left .seckill-name {
+  margin-left: 0.05rem;
+  /* 使用主体色变量 */
+  color: #de181b;
+}
+#main .seckill .title .left .seckill-downtime {
+  margin-left: 0.05rem;
+}
+#main .seckill .title .left .seckill-downtime span:not(:nth-child(3n)) {
+  background-color: #000;
+  color: #fff;
+  width: 0.15rem;
+  display: inline-block;
+  text-align: center;
+  line-height: 0.15rem;
+}
+#main .seckill .title .right {
+  /* float: right; */
+}
+#main .seckill .title .right .more {
+  margin-right: 0.1rem;
+}
+#main .seckill .content ul {
+  display: flex;
+  /* 排除自己选中自己后面的所有兄弟元素 排除了第一个li */
+  /* li ~ li{
+                    border-left: 0.01rem solid #000;
+                } */
+}
+#main .seckill .content ul li {
+  width: 33.33%;
+  /* 相邻后面所有兄弟选择器 */
+}
+#main .seckill .content ul li a {
+  display: block;
+  text-align: center;
+}
+#main .seckill .content ul li a img {
+  width: 1.1rem;
+}
+#main .seckill .content ul li a span {
+  display: block;
+  font-size: 0.12rem;
+  color: #de181b;
+}
+#main .seckill .content ul li a del {
+  display: block;
+  font-size: 0.12rem;
+  color: #ccc;
+}
+#main .seckill .content ul li ~ li {
+  border-left: 0.01rem solid #ccc;
+}
+#main .jd-market {
+  background-color: #fff;
+  box-shadow: 0px 0px 0.02rem 0.01rem hotpink;
+  margin-top: 0.1rem;
+}
+#main .jd-market .title {
+  line-height: 0.3rem;
+}
+#main .jd-market .title h4 {
+  padding-left: 0.3rem;
+  position: relative;
+  font-weight: normal;
+}
+#main .jd-market .title h4::before {
+  content: '';
+  background-color: #de181b;
+  width: 0.04rem;
+  height: 0.16rem;
+  position: absolute;
+  left: 0.2rem;
+  top: 0.07rem;
+}
+#main .jd-market .content {
+  display: flex;
+}
+#main .jd-market .content .left {
+  width: 50%;
+}
+#main .jd-market .content .left a {
+  display: block;
+}
+#main .jd-market .content .left a img {
+  width: 100%;
+}
+#main .jd-market .content .right {
+  width: 50%;
+}
+#main .jd-market .content .right a {
+  display: block;
+}
+#main .jd-market .content .right a img {
+  width: 100%;
+}
+/* 底部区域 */
+#footer {
+  position: fixed;
+  bottom: 0;
+  /* 设置宽度不然没有宽度 */
+  width: 100%;
+  background-color: #d51433;
+}
+#footer ul {
+  display: flex;
+}
+#footer ul li {
+  width: 20%;
+}
+#footer ul li a {
+  display: block;
+}
+#footer ul li a img {
+  width: 0.65rem;
+}

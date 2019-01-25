@@ -1,0 +1,238 @@
+/* 在index.less文件夹里面引入公共的base.less文件 */
+
+// @import '指定less文件的路径'
+@import 'base.less';
+/* 自定义一个icon函数封装重复使用精灵图的代码  */
+
+.icon {    
+    /* 引入logo的精灵图图片 */
+    background-image: url(../images/sprites.png); // 背景图需要变小成 一半
+    background-size: 2rem 2rem; // 背景图的定位也要变小一半
+    /* 默认背景图不会跟随padding去改变位置  设置了背景图定位器起点和裁切可以让背景图参照padding来动 */
+    /* 设置背景图的定位参照点 */
+    background-origin: content-box; // 背景图的裁切 裁切掉除了这个范围以外的背景图
+    background-clip: content-box; // 如果需要对属性进行连写使用~进行转义把你要转义代码放到字符串里面 转义了之后这个/就不是除号了
+    // background: ~'url(../images/sprites.png) 0px -1.1rem / 2rem 2rem content-box content-box';
+}
+
+#header {
+    position: fixed;
+    z-index: 999;
+    /* 如果设置了固定定位 脱标了之后宽度都没有的会按照内容撑开 如果想要100%需要手动设置 */
+    width: 100%;
+    /* 父元素设置flex布局 */
+    display: flex; // > 表示子代 直接子元素  这种注释编译后会删除
+    /* > 表示子代 直接子元素  这种注释编译后会保留 */
+    >.icon-logo {
+        width: 0.8rem;
+        height: 0.45rem;
+        /* 调用自定义函数 icon */
+        .icon;
+        background-position: 0px -1.1rem;
+        /* 盒子虽然很大80 但是真实显示图片只有 60*25 图片是居中在页面里面显示 设置一个padding把图片挤到中间来 */
+        padding: 0.1rem;
+    }
+    >form {
+        flex: 1;
+        padding-top: 0.05rem;
+        position: relative;
+        .icon-search {
+            /* 调用自定义函数icon */
+            .icon;
+            background-position: -0.6rem -1.1rem;
+            width: 0.2rem;
+            height: 0.2rem;
+            position: absolute;
+            left: 0.1rem;
+            top: 0.14rem;
+        }
+        input {
+            width: 100%;
+            height: 0.35rem;
+            border-radius: 0.17rem;
+            padding-left: 0.3rem;
+            font-size: 0.14rem;
+        }
+    }
+    >.login {
+        width: 0.5rem;
+        text-align: center;
+        line-height: 0.45rem;
+        color: #fff;
+    }
+}
+
+#slide {
+    img {
+        width: 100%;
+    }
+    .swiper-pagination-bullet{
+        background-color: #f00;
+        opacity: 1;
+    }
+    .swiper-pagination-bullet-active{
+        background-color: #0f0;
+    }
+}
+
+/* 导航条样式 */
+
+#nav {
+    /* 父元素和子元素的间距使用padding  只给nav设置上下padding*/
+    padding: 0.1rem 0;
+    ul {
+        display: flex;
+        /* 让flex布局支持换行 */
+        flex-wrap: wrap;
+        li {
+            width: 25%;
+            a {
+                text-align: center;
+                /* 如果想给a设置文本居中属性 让文本和 图片居中一定要转块 */
+                display: block;
+                img {
+                    width: 0.4rem;
+                    height: 0.4rem;
+                }
+                p {
+                    /* 兄弟之间使用margin */
+                    margin: 0.05rem 0;
+                }
+            }
+        }
+    }
+}
+
+/* 主体商品区域 */
+
+#main {
+    /* 设置内边距 父子之间的间距 */
+    padding: 0.1rem;
+    /* 为了把main里面的商品内容往上挤 60px 为了不和底部重叠在一起 */
+    padding-bottom: 0.6rem;
+    background-color: #eee;
+    /* 秒杀商品 */
+    .seckill {
+        background-color: #fff;
+        box-shadow: 0px 0px 0.02rem 0.01rem hotpink;
+        .title {
+            display: flex;
+            /* 设置伸缩布局2端对齐 */
+            justify-content: space-between; // position: relative;
+            line-height: 0.3rem;
+            .left {
+                display: flex;
+                .seckill-icon {
+                    width: 0.20rem;
+                    height: 0.25rem;
+                    margin-left: 0.05rem;
+                }
+                .seckill-name {
+                    margin-left: 0.05rem;
+                    /* 使用主体色变量 */
+                    color: @main-color;
+                }
+                .seckill-downtime {
+                    margin-left: 0.05rem; // 排除span里面 3的倍数的span 排除了2个冒号
+                    span:not(:nth-child(3n)) {
+                        background-color: #000;
+                        color: #fff;
+                        width: 0.15rem;
+                        display: inline-block;
+                        text-align: center;
+                        line-height: 0.15rem;
+                    }
+                }
+            }
+            .right {
+                /* float: right; */
+                // position: absolute;
+                // right: 0;
+                .more {
+                    margin-right: 0.1rem;
+                }
+            }
+        }
+        .content {
+            ul {
+                display: flex;
+                li {
+                    width: 33.33%;
+                    a {
+                        display: block;
+                        text-align: center;
+                        img {
+                            width: 1.1rem;
+                        }
+                        span {
+                            display: block;
+                            font-size: 0.12rem;
+                            color: @main-color;
+                        }
+                        del {
+                            display: block;
+                            font-size: 0.12rem;
+                            color: #ccc;
+                        }
+                    }
+                    /* 相邻后面所有兄弟选择器 */
+                    &~li {
+                        border-left: 0.01rem solid #ccc;
+                    }
+                }
+                /* 排除自己选中自己后面的所有兄弟元素 排除了第一个li */
+                /* li ~ li{
+                    border-left: 0.01rem solid #000;
+                } */
+            }
+        }
+    }
+    /* 京东超市 */
+    .jd-market {
+        background-color: #fff;
+        box-shadow: 0px 0px 0.02rem 0.01rem hotpink;
+        margin-top: 0.1rem;
+        .title {
+            line-height: 0.3rem;
+            h4 {
+                padding-left: 0.3rem;
+                position: relative;
+                font-weight: normal;
+                &::before {
+                    content: '';
+                    background-color: @main-color;
+                    width: 0.04rem;
+                    height: 0.16rem;
+                    position: absolute;
+                    left: 0.2rem;
+                    top: 0.07rem;
+                }
+            }
+        }
+        .content {
+            display: flex;
+            .left {
+                width: 50%;
+                a {
+                    display: block;
+                    img {
+                        width: 100%;
+                    }
+                }
+                
+            }
+            .right {
+                width: 50%;
+                a {
+                    display: block;
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* 底部区域 */
+

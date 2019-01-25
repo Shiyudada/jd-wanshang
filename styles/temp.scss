@@ -1,0 +1,40 @@
+// 导入其它scss文件
+@import './_commonFun.scss';
+
+
+
+// 头部块
+.header{
+    width: 100%;
+    // 设置当前容器的最大宽度，当屏幕宽度大于这个值的时候，也不会100%
+    max-width: 640px;
+    // 设置当前容器的最大宽度，当屏幕宽度小于这个值的时候，也不会100%，会出现滚动条，而不是无限的缩小容器的宽度
+    min-width: 320px;
+    margin: 0 auto;
+    height: 40px;
+    background-color: $baseColor;
+    position: relative;
+    // 嵌套
+    > .back {
+        @include iconSet(-22px);
+        left: 0;
+        &:hover{
+            color:red;
+        }
+    }
+    > .menu{
+        @include iconSet(-60px);
+        right: 0;
+    }
+    > form {
+        width: 100%;
+        height: 100%;
+        padding: 0 50px;
+    }
+}
+
+
+// - 定义混入:@mixin 函数名称(参数:值){}
+//   - @include 函数名称(实参)
+// - 嵌套：> &:hover
+// - 导入：@import '';

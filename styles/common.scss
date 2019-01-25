@@ -1,0 +1,19 @@
+#footer {
+    position: fixed;
+    bottom: 0;
+    /* 设置宽度不然没有宽度 */
+    width: 100%;
+    background-color: rgb(213, 20, 51);
+    ul {
+        display: flex;
+        li {
+            width: 20%;
+            a {
+                display: block;
+                img {
+                    width: 0.65rem;
+                }
+            }
+        }
+    }
+}

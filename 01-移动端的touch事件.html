@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background:linear-gradient(to right,red,blue);
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        // 1 获取div
+        var div = document.querySelector('div')
+        
+        // div.addEventListener('click',function(){
+        //     console.log("click123")
+        // })
+
+        var startX,startY
+        var moveX,moveY
+
+
+        // 2 为div绑定touch事件：在移动端绑定事件是使用addEventListener
+        // touchstart:开始触摸，一次触摸只触发一次  ondragstart
+        div.addEventListener('touchstart',function(e){
+            console.log("touchstart")
+            // 获取手指坐标
+            // console.log(e.targetTouches[0].clientX,e.targetTouches[0].clientY)
+            // console.log(e.targetTouches[0].pageX,e.targetTouches[0].pageY)
+            // console.log(e.targetTouches[0].screenX,e.targetTouches[0].screenY)
+            startX = e.targetTouches[0].clientX
+            startY = e.targetTouches[0].clientY
+        })
+        // touchmove:触摸过程：只要没有松开手指,同时手指位置(坐标)有偏移，这个事件会一直触发 ondrag
+        div.addEventListener('touchmove',function(e){
+            console.log("touchmove")
+            // console.log(e)
+            moveX = e.targetTouches[0].clientX
+            moveY = e.targetTouches[0].clientY
+            // 计算触发事件时手指和原始位置的差异
+            var distanceX = moveX - startX
+            var distanceY = moveY - startY
+            // 实现偏移
+            div.style.transform = `translate(${distanceX}px,${distanceY}px)`
+        })
+        // touchend:触摸结束，松开手指 ondragend
+        div.addEventListener('touchend',function(e){
+            console.log("touchend")
+            console.log(e)
+        })
+        // touchcancel:触摸意外中断，由优先级更高的操作中断
+
+        // 结论
+        // 1.如果在touchstart或touchmove中，我们可以从touches或targettouches中获取手指对象
+        // 2.如果在touchend中，只能通过changedtouches来获取手指对象
+    </script>
+</body>
+</html>
